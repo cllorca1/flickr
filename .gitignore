@@ -3,3 +3,6 @@
 /.idea/
 /r/.Rproj.user/
 .Rproj.user
+.RData
+.Rhistory
+/target/
