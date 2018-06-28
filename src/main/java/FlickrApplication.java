@@ -31,13 +31,13 @@ public class FlickrApplication {
         //initialize printer
 
 
-
-
+        //repeat from 1 06 until last day of 08
         Calendar cal = Calendar.getInstance();
 
         int year = 2017;
-        int fileIndex = 1;
-        for (int month = 0; month <= cal.getMaximum(Calendar.MONTH); month++) {
+        int fileIndex = 500;
+        //for (int month = 6; month <= cal.getMaximum(Calendar.MONTH); month++) {
+        for (int month = 6; month <= 7 ; month++) {
             for (int day = 0; day <= cal.getMaximum(Calendar.DAY_OF_MONTH); day++) {
 
                 PrintWriter pw = new PrintWriter(new File(fileIndex + ".csv"));
@@ -58,7 +58,7 @@ public class FlickrApplication {
 
                 boolean still = true;
                 int counter = 0;
-                int page = 0;
+                int page = 1;
                 ArrayList<Photo> searchResults = new ArrayList<>();
                 while (still) {
 
