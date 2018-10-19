@@ -19,6 +19,8 @@ usersAndType = data %>% select(personId, type)
 
 write.csv(dataUsers, paste(path,"outputByUser.csv", sep = ""), row.names = F)
 
+dataUsers = read.csv(paste(path,"outputByUser.csv", sep = ""))
+
 simplePictureList2 = dataUsers %>% select(id, personId, time, lon, lat)
 
 simplePictureList = rbind(simplePictureList, simplePictureList2)

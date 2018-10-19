@@ -1,26 +1,34 @@
 library(dplyr)
 
-path = "c:/models/flickr/byDay/"
+path = "c:/models/flickr/pics/"
+years = c(2007,2008,2009,2010,2011,2012)
+
 
 data = data.frame()
+
+for (year in years){
 for (fileIndex in 1:563){
-  fileName = paste(path, fileIndex,".csv", sep = "")
-  if (file.exists(fileName)) {
-    dayData = read.csv(fileName,fileEncoding = "UTF-8")
-    dayData = dayData[!duplicated(dayData),]
-    data = rbind(data,dayData)
+  file_name = year * 1000 + fileIndex
+  path_file_name = paste(path, file_name,".csv", sep = "")
+  if (file.exists(path_file_name)) {
+    dayData = read.csv(path_file_name,fileEncoding = "UTF-8")
+    if(nrow(dayData) > 0){
+      dayData = dayData[!duplicated(dayData),]
+      dayData$year = year
+      dayData$day = fileIndex
+      data = rbind(data,dayData)
   }
-  
+  }
+ }
 }
 
-#remove duplicates 
-
-
+#write/read outputs for later analysis
 
 write.csv(data, paste(path,"output.csv", sep = ""), row.names = F)
 
 #analyze users origin
 
+data = read.csv(paste(path,"output.csv", sep = ""))
 
 
 listOfLocations = data.frame(location = as.character(unique(data$location)))
@@ -35,3 +43,7 @@ listOfLocations %>% group_by(type) %>% summarise(n = n())
 simplePictureList = data %>% select(id, personId, time, lon, lat)
 
 userType = merge(x=data, y=listOfLocations, by= "location") %>% select(personId,type)
+
+userType %>% group_by(type) %>% summarize(n())
+
+
