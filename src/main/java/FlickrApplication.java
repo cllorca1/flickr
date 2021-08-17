@@ -24,10 +24,16 @@ public class FlickrApplication {
 
 
         //bounding box Munich City
-        String up = "48.2485";
-        String down = "48.0104";
-        String left = "11.2970";
-        String right = "11.8361";
+//        String up = "48.2485";
+//        String down = "48.0104";
+//        String left = "11.2970";
+//        String right = "11.8361";
+        //bounding box Surroundings
+        String up = "49.1116";
+        String down = "47.2084";
+        String left = "9.8602";
+        String right = "14.1724";
+
 
         //initialize printer
 
@@ -38,10 +44,10 @@ public class FlickrApplication {
 
         int fileIndex = year * 1000;
         //for (int month = 6; month <= cal.getMaximum(Calendar.MONTH); month++) {
-        for (int month = 0; month < cal.getMaximum(Calendar.MONTH) ; month++) {
+        for (int month = 0; month <= cal.getMaximum(Calendar.MONTH) ; month++) {
             for (int day = 0; day <= cal.getMaximum(Calendar.DAY_OF_MONTH); day++) {
 
-                String fileName = "pics/" + fileIndex + ".csv";
+                String fileName = "test/" + fileIndex + ".csv";
 
                 File file = new File(fileName);
 
@@ -111,12 +117,10 @@ public class FlickrApplication {
                             pw.println();
                             counter++;
 
-
-
-                            System.out.println("Found a picture with information. Sum " + counter);
+                            //System.out.println("Found a picture with information. Sum " + counter);
                         } catch (Exception e) {
                             //do nothing
-                            System.out.println("Found a picture with no information");
+                            //System.out.println("Found a picture with no information");
                         }
                     }
                     System.out.println("A total of " + counter + " pictures were processed");

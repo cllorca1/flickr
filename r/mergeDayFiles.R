@@ -1,7 +1,7 @@
 library(dplyr)
 
 path = "c:/models/flickr/pics/"
-years = c(2007,2008,2009,2010,2011,2012)
+years = seq(2007,2017)
 
 
 data = data.frame()
@@ -25,6 +25,9 @@ for (fileIndex in 1:563){
 #write/read outputs for later analysis
 
 write.csv(data, paste(path,"output.csv", sep = ""), row.names = F)
+
+
+data %>% group_by(year) %>% summarize(n())
 
 #analyze users origin
 
